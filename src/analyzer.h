@@ -27,14 +27,14 @@ private:
     void gaussWindow(float *samples, const float *waveData) const;
 
     /// array used by filling it with audio samples and calculate FFT
-    float temp[1024];  // Needs to be 1024 for fft1024
+    float temp[8192];  // Increased from 1024 to 8192 for higher resolution FFT
 
     /// contains latest calulated FFT
     float FFTData[256];
 
     /// window size used by windowing algorithms.
     /// The size is optained when the player has been initialized
-    /// and is given by the backend buffer size 
+    /// and is given by the backend buffer size
     /// over its number of channels (maybe@#`#@`#!!)
     int mWindowSize;
 
@@ -52,7 +52,7 @@ private:
     float maxFreq;    // Maximum frequency to analyze
     int minBin;       // Minimum FFT bin corresponding to minFreq
     int maxBin;       // Maximum FFT bin corresponding to maxFreq
-    
+
     int freqToBin(float frequency) const;
     int mapFrequencyToFFTDataIndex(float freq) const;
     float mapFFTDataIndexToFrequency(int index) const;
